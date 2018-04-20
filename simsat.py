@@ -36,3 +36,18 @@ class Wallet():
 
 
 
+class TestWallet(unittest.TestCase):
+    def test_default_money(self):
+        wallet = Wallet(100)
+        self.assertEqual(100, wallet.money)
+
+    def test_increase_money(self):
+        wallet = Wallet(100)
+        wallet.modify_money(10)
+        self.assertEqual(110, wallet.money)
+
+    def test_decrease_money(self):
+        wallet = Wallet(100)
+        wallet.modify_money(-30)
+        self.assertEqual(70, wallet.money)
+
