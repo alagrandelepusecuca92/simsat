@@ -55,3 +55,6 @@ class TestWallet(unittest.TestCase):
         wallet.modify_money(-30)
         self.assertEqual(70, wallet.money)
 
+
+if __name__ == '__main__':
+    unittest.main()
