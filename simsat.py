@@ -35,6 +35,10 @@ class Wallet():
         self.money += change
 
 
+class Engine():
+    def __init__(self):
+        pass
+
 
 class TestWallet(unittest.TestCase):
     def test_default_money(self):
