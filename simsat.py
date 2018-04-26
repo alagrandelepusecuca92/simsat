@@ -17,6 +17,7 @@ sate = '''
                 #|ooo|#
                  \___/'''
 
+
 class Wallet():
     def __init__(self, initial_money, debug=0):
         self.money = initial_money
