@@ -1,5 +1,5 @@
 import argparse
-import wallet
+import finance
 
 def configure_parser(parser):
     parser.add_argument("-t", "--time",  type=int, default=10,   help="Time in seconds (default: %(default)d)")
@@ -23,8 +23,8 @@ sate = '''
                  \___/'''
 
 class Engine():
-    def __init__(self):
-        pass
+    def __init__(self, money, time):
+        wallet = finance.Wallet(money)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="SimSAT Game")

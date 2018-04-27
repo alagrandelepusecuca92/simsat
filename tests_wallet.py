@@ -1,9 +1,9 @@
 import unittest
-import wallet
+import finance
 
 class TestWallet(unittest.TestCase):
     def setUp(self):
-        self.wallet = wallet.Wallet(100)
+        self.wallet = finance.Wallet(100)
 
     def test_default_money(self):
         self.assertEqual(100, self.wallet.money)
