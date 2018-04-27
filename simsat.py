@@ -1,5 +1,5 @@
 import unittest
-
+import argparse
 
 sate = '''
                 }--O--{
@@ -36,9 +36,9 @@ class Wallet():
 
 
 class Engine():
-    def __init__(self):
-        self.wallet = Wallet(100)
-        self.time = 0
+    def __init__(self, initial_time=0, initial_money=0):
+        self.wallet = Wallet(initial_money)
+        self.time = initial_time
         
     def run(self, initialtime=0, endtime=0):
         currenttime = initialtime
@@ -54,35 +54,18 @@ class Engine():
     def status (self):
         return [self.time, self.wallet.get_money()]
 
-
-class TestWallet(unittest.TestCase):
-    def setUp(self):
-        self.wallet = Wallet(100)
-
-    def test_default_money(self):
-        self.assertEqual(100, self.wallet.money)
-
-    def test_increase_money(self):
-        self.wallet.modify_money(10)
-        self.assertEqual(110, self.wallet.money)
-
-    def test_decrease_money(self):
-        self.wallet.modify_money(-30)
-        self.assertEqual(70, self.wallet.money)
-
-    def test_getter_money(self):
-        self.assertEqual(100, self.wallet.get_money())
-
-    def test_setter_money(self):
-        self.wallet.set_money(10)
-        self.assertEqual(10, self.wallet.get_money())
-
-
 if __name__ == '__main__':
-    eng = Engine()
-    print ("estado actual")
+    buscadordeparametros = argparse.ArgumentParser()
+    buscadordeparametros.add_argument("tini", type=int, help="Tiempo inicial")
+    buscadordeparametros.add_argument("tfin", type=int, help="Tiempo final")
+    buscadordeparametros.add_argument("pini", type=int, help="Plata inicial")
+    args = buscadordeparametros.parse_args()
+    
+    eng = Engine(args.tini, args.pini)
     print(eng.status())
-    print ("actualizo con 10 deltas")
-    eng.update(10)
-    print ("estado despues")
-    print(eng.status())
+    
+    while (eng.status()[0] < args.tfin):
+        eng.update(1)
+        print(eng.status())
+        
+    print ("fin")
