@@ -24,9 +24,20 @@ sate = '''
 
 class Engine():
     def __init__(self, money, time):
-        wallet = finance.Wallet(money)
+        self.wallet = finance.Wallet(money)
+        self.time_money_conv = 10
+
+    def transfer_money (self, time):
+        self.wallet.modify_money(time*self.time_money_conv)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="SimSAT Game")
     configure_parser(parser)
     args = parser.parse_args()
+    print('Guita Inicial:  {}'.format(args.money))
+    print('Tiempo Total: {}'.format(args.time))
+
+    engine = Engine(args.money, args.time)
+    engine.transfer_money(args.time)
+    print('Guita al final del juego: %d' % engine.wallet.get_money())
