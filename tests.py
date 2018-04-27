@@ -1,5 +1,5 @@
 import unittest
-from simsat import Wallet
+from simsat import Wallet, Engine
 
 class TestWallet(unittest.TestCase):
     def setUp(self):
@@ -22,6 +22,17 @@ class TestWallet(unittest.TestCase):
     def test_setter_money(self):
         self.wallet.set_money(10)
         self.assertEqual(10, self.wallet.get_money())
+
+class TestEngine(unittest.TestCase):
+    def setUp(self):
+        self.eng = Engine(1,1)
+
+    def test_update(self):
+        self.eng.update(10)
+        self.assertEqual(11, self.eng.status()[0])
+
+    def test_status(self):
+        self.assertEqual([1, 1], self.eng.status())
 
 if __name__ == '__main__':
     unittest.main()
