@@ -19,7 +19,7 @@ sate = '''
 
 
 class Wallet():
-    def __init__(self, initial_money, debug=0):
+    def __init__(self, initial_money=0, debug=0):
         self.money = initial_money
 
     def get_money(self):
@@ -37,7 +37,22 @@ class Wallet():
 
 class Engine():
     def __init__(self):
-        pass
+        self.wallet = Wallet(100)
+        self.time = 0
+        
+    def run(self, initialtime=0, endtime=0):
+        currenttime = initialtime
+        
+        while (currenttime < endtime):
+            print ("t=" + str(currenttime) + " wallet=" + str(self.wallet.get_money()))
+            currenttime=currenttime+1
+            
+    def update (self, deltatime = 0):
+        self.time = self.time + deltatime
+        #actualizo wallet
+        
+    def status (self):
+        return [self.time, self.wallet.get_money()]
 
 
 class TestWallet(unittest.TestCase):
@@ -64,4 +79,10 @@ class TestWallet(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    eng = Engine()
+    print ("estado actual")
+    print(eng.status())
+    print ("actualizo con 10 deltas")
+    eng.update(10)
+    print ("estado despues")
+    print(eng.status())
