@@ -1,9 +1,10 @@
 import unittest
-import symsat
+from simsat import Wallet
+
 
 class TestWallet(unittest.TestCase):
     def setUp(self):
-        self.wallet = symsat.Wallet(100)
+        self.wallet = Wallet(100)
 
     def test_default_money(self):
         self.assertEqual(100, self.wallet.money)
